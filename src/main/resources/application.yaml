@@ -1,2 +1,7 @@
-spring.application.name=runnerz
-server.error.include-stacktrace=never
+spring:
+  application:
+    name: runnerz
+
+server:
+  error:
+    include-stacktrace: never
