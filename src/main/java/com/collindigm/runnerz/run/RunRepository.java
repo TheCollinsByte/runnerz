@@ -29,6 +29,9 @@ public class RunRepository {
                 .findFirst();
     }
 
+    void create(Run run) {
+        runs.add(run);
+    }
 
     @PostConstruct
     public void init() {
