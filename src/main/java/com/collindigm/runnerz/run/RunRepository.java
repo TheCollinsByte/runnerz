@@ -25,7 +25,7 @@ public class RunRepository {
 
     Optional<Run> findById(Integer id) {
         return runs.stream()
-                .filter(run -> Objects.equals(run.id(), id))
+                .filter(run -> run.id().equals(id))
                 .findFirst();
     }
 
@@ -36,6 +36,10 @@ public class RunRepository {
     void update(Run run, Integer id) {
         Optional<Run> existingRun = findById(id);
         existingRun.ifPresent(value -> runs.set(runs.indexOf(value), run));
+    }
+
+    void delete(Integer id) {
+        runs.removeIf(run -> run.id().equals(id));
     }
 
     @PostConstruct

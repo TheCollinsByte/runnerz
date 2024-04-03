@@ -39,11 +39,15 @@ public class RunController {
         runRepository.create(run);
     }
 
-    @RequestMapping(path = "", method = RequestMethod.PUT)
-    void update(@RequestBody Run run) {
-        runRepository.update(run, run.id());
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
+    void update(@RequestBody Run run, @PathVariable Integer id) {
+        runRepository.update(run, id);
     }
 
-
-    // delete
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+    void delete(@PathVariable Integer id) {
+        runRepository.delete(id);
+    }
 }
