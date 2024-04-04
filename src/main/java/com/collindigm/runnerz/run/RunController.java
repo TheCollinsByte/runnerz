@@ -1,5 +1,6 @@
 package com.collindigm.runnerz.run;
 
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,13 +35,13 @@ public class RunController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "", method = RequestMethod.POST)
-    void create(@RequestBody Run run) {
+    void create(@Valid @RequestBody Run run) {
         runRepository.create(run);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
-    void update(@RequestBody Run run, @PathVariable Integer id) {
+    void update(@Valid @RequestBody Run run, @PathVariable Integer id) {
         runRepository.update(run, id);
     }
 
