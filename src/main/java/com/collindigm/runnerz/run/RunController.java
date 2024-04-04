@@ -33,13 +33,13 @@ public class RunController {
         return run.get();
     }
 
-    /*
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "", method = RequestMethod.POST)
     void create(@Valid @RequestBody Run run) {
         runRepository.create(run);
     }
 
+    /*
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(path = "/{id}", method = RequestMethod.PUT)
     void update(@Valid @RequestBody Run run, @PathVariable Integer id) {
