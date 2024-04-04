@@ -1,7 +1,14 @@
 spring:
   application:
     name: runnerz
+  h2:
+    console:
+      enabled: true
+  datasource:
+    generate-unique-name: false
+    name: runnerz
 
 server:
   error:
     include-stacktrace: never
+  port: 8085
