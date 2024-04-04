@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Repository
@@ -19,8 +20,15 @@ public class RunRepository {
     }
 
     public List<Run> findAll() {
-        return jdbcClient.sql("SELECT * FROM run")
+        return jdbcClient.sql("SELECT * FROM Run")
                 .query(Run.class)
                 .list();
+    }
+
+    public Optional<Run> findById(Integer id) {
+        return jdbcClient.sql("SELECT id, title, started_on, completed_on, miles, location FROM Run WHERE id = :id")
+                .param("id", id)
+                .query(Run.class)
+                .optional();
     }
 }

@@ -21,7 +21,6 @@ public class RunController {
         return runRepository.findAll();
     }
 
-    /*
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
     Run findById(@PathVariable Integer id) {
 
@@ -34,6 +33,7 @@ public class RunController {
         return run.get();
     }
 
+    /*
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(path = "", method = RequestMethod.POST)
     void create(@Valid @RequestBody Run run) {
