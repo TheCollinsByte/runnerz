@@ -21,6 +21,7 @@ public class RunController {
         return runRepository.findAll();
     }
 
+    /*
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
     Run findById(@PathVariable Integer id) {
 
@@ -50,4 +51,5 @@ public class RunController {
     void delete(@PathVariable Integer id) {
         runRepository.delete(id);
     }
+    */
 }
