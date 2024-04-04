@@ -45,5 +45,15 @@ public class RunRepository {
        var updated = jdbcClient.sql("UPDATE Run set title = ?, started_on = ?, completed_on = ?, miles = ?, location = ? WHERE id = ?")
                .params(List.of(run.title(), run.startedOn(), run.completedOn(), run.miles(), run.location().toString(), id))
                .update();
+
+       Assert.state(updated == 1, "Failed to update run " + run.title());
+    }
+
+    public void delete(Integer id) {
+        var updated = jdbcClient.sql("DELETE FROM Run WHERE id = :id")
+                .param("id", id)
+                .update();
+
+        Assert.state(updated == 1, "Failed to delete run " + id);
     }
 }

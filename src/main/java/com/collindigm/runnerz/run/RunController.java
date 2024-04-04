@@ -45,11 +45,9 @@ public class RunController {
         runRepository.update(run, id);
     }
 
-    /*
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
     void delete(@PathVariable Integer id) {
         runRepository.delete(id);
     }
-    */
 }
