@@ -56,4 +56,8 @@ public class RunRepository {
 
         Assert.state(updated == 1, "Failed to delete run " + id);
     }
+
+    public void saveAll(List<Run> runs) {
+        runs.forEach(this::create);
+    }
 }
