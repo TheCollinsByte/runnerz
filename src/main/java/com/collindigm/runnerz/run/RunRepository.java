@@ -64,4 +64,11 @@ public class RunRepository {
     public int count() {
         return jdbcClient.sql("select * from Run").query().listOfRows().size();
     }
+
+    public List<Run> findByLocation(String location) {
+        return jdbcClient.sql("SELECT * FROM Run WHERE location = :location")
+                .param("location", location)
+                .query(Run.class)
+                .list();
+    }
 }
