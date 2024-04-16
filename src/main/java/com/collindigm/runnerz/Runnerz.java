@@ -2,6 +2,7 @@ package com.collindigm.runnerz;
 
 import com.collindigm.runnerz.run.Location;
 import com.collindigm.runnerz.run.Run;
+import com.collindigm.runnerz.run.RunRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -22,9 +23,10 @@ public class Runnerz {
 
 
 	@Bean
-	CommandLineRunner runner() {
+	CommandLineRunner runner(RunRepository runRepository) {
 		return args -> {
 			Run run = new Run(1, "Warm-up", LocalDateTime.now(), LocalDateTime.now().plusHours(1), 5, Location.OUTDOOR);
+			runRepository.create(run);
 			log.info("Run: {}", run);
 		};
 	}
