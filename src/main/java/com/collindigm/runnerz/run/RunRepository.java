@@ -60,4 +60,8 @@ public class RunRepository {
     public void saveAll(List<Run> runs) {
         runs.forEach(this::create);
     }
+
+    public int count() {
+        return jdbcClient.sql("select * from Run").query().listOfRows().size();
+    }
 }
