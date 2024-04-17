@@ -19,6 +19,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web:3.2.4'
     implementation 'org.springframework.boot:spring-boot-starter-validation:3.2.4'
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc:3.2.4'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc:3.2.4'
 
 	developmentOnly 'org.springframework.boot:spring-boot-docker-compose:3.2.4'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools:3.2.4'
