@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -48,8 +49,8 @@ public class InMemoryRunRepository {
 
     @PostConstruct
     public void init() {
-        runs.add(new Run(1, "Monday Morning Run", LocalDateTime.now(), LocalDateTime.now().plusHours(1), 5, Location.OUTDOOR));
-        runs.add(new Run(2, "Tuesday Afternoon Run", LocalDateTime.now(), LocalDateTime.now().plusHours(1), 2, Location.INDOOR));
-        runs.add(new Run(3, "Wednesday Evening Run", LocalDateTime.now(), LocalDateTime.now().plusHours(2), 7, Location.OUTDOOR));
+        runs.add(new Run(1, "Monday Morning Run", LocalDateTime.now(), LocalDateTime.now().plus(30, ChronoUnit.MINUTES), 5, Location.OUTDOOR, null));
+        runs.add(new Run(2, "Tuesday Afternoon Run", LocalDateTime.now(), LocalDateTime.now().plus(60, ChronoUnit.MINUTES), 2, Location.INDOOR, null));
+        runs.add(new Run(3, "Wednesday Evening Run", LocalDateTime.now(), LocalDateTime.now().plus(40, ChronoUnit.MINUTES), 7, Location.OUTDOOR, null));
     }
 }
