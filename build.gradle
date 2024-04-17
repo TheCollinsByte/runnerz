@@ -20,9 +20,12 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation:3.2.4'
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc:3.2.4'
 
-	runtimeOnly 'com.h2database:h2:2.2.224'
-
+	developmentOnly 'org.springframework.boot:spring-boot-docker-compose:3.2.4'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools:3.2.4'
+
+	runtimeOnly 'org.postgresql:postgresql:42.7.3'
+	// runtimeOnly 'com.h2database:h2:2.2.224'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test:3.2.4'
 }
 
