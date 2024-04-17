@@ -11,12 +11,12 @@ import java.util.Optional;
 
 
 @Repository
-public class RunRepository {
+public class JdbcClientRunRepository {
 
-    private static final Logger LOG = LoggerFactory.getLogger(RunRepository.class);
+    private static final Logger LOG = LoggerFactory.getLogger(JdbcClientRunRepository.class);
     private final JdbcClient jdbcClient;
 
-    public RunRepository(JdbcClient jdbcClient) {
+    public JdbcClientRunRepository(JdbcClient jdbcClient) {
         this.jdbcClient = jdbcClient;
     }
 
