@@ -1,17 +1,9 @@
 package com.collindigm.runnerz;
 
-import com.collindigm.runnerz.run.Location;
-import com.collindigm.runnerz.run.Run;
-import com.collindigm.runnerz.run.RunRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 
 @SpringBootApplication
 public class Runnerz {
@@ -22,6 +14,7 @@ public class Runnerz {
 	}
 
 
+	/*
 	@Bean
 	CommandLineRunner runner(RunRepository runRepository) {
 		return args -> {
@@ -30,4 +23,5 @@ public class Runnerz {
 			log.info("Run: {}", run);
 		};
 	}
+	*/
 }
