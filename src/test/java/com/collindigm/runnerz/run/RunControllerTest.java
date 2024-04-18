@@ -3,18 +3,15 @@ package com.collindigm.runnerz.run;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.ArgumentMatcher;
 import org.mockito.ArgumentMatchers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.hamcrest.Matchers.is;
 
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -49,6 +46,14 @@ class RunControllerTest {
                 LocalDateTime.now().plusMinutes(30),
                 3,
                 Location.INDOOR,
+                null));
+
+        runs.add(new Run(2,
+                "Friday Afternoon Run",
+                LocalDateTime.now(),
+                LocalDateTime.now().plusMinutes(50),
+                3,
+                Location.OUTDOOR,
                 null));
     }
 
@@ -89,7 +94,7 @@ class RunControllerTest {
     }
 
     @Test
-    void  shouldUpdateRun() throws Exception{
+    void  shouldUpdateRun() throws Exception {
         Run run = new Run(null, "Test Run", LocalDateTime.now(), LocalDateTime.now().plusMinutes(50), 1, Location.OUTDOOR, null);
         mvc.perform(put("/api/runs/1")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -99,7 +104,8 @@ class RunControllerTest {
     }
 
     @Test
-    void shouldDeleteRun() {
-
+    void shouldDeleteRun() throws Exception {
+        mvc.perform(delete("/api/runs/2"))
+                .andExpect(status().isNoContent());
     }
 }
