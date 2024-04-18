@@ -8,17 +8,20 @@ import org.mockito.ArgumentMatchers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static org.hamcrest.Matchers.is;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -71,14 +74,19 @@ class RunControllerTest {
     }
 
     @Test
-    void shouldReturnNotFoundWithInvalidId() throws Exception{
+    void shouldReturnNotFoundWithInvalidId() throws Exception {
         mvc.perform(get("/api/runs/99"))
                 .andExpect(status().isNotFound());
     }
 
     @Test
-    void shouldCreateNewRun() {
-
+    void shouldCreateNewRun() throws Exception {
+        Run run = new Run(null, "Test Run", LocalDateTime.now(), LocalDateTime.now().plusMinutes(40), 1, Location.INDOOR, null);
+        mvc.perform(post("/api/runs/")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(run))
+                )
+                .andExpect(status().isCreated());
     }
 
     @Test
