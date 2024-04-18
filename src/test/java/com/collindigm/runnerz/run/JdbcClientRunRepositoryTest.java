@@ -9,12 +9,11 @@ import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
 import org.springframework.context.annotation.Import;
 
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
+/*
  * Slice Test: JDBCTest
  */
 @JdbcTest
@@ -23,12 +22,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class JdbcClientRunRepositoryTest {
 
     @Autowired
-    JdbcClientRunRepository repository;
+    RunRepository repository;
 
     @BeforeEach
     void setUp() {
-        repository.create(new Run(
-                1,
+        repository.save(new Run(1,
                 "Monday Morning Run",
                 LocalDateTime.now(),
                 LocalDateTime.now().plusMinutes(30),
@@ -36,8 +34,7 @@ class JdbcClientRunRepositoryTest {
                 Location.INDOOR,
                 null));
 
-        repository.create(new Run(
-                2,
+        repository.save(new Run(2,
                 "Wednesday Evening Run",
                 LocalDateTime.now(),
                 LocalDateTime.now().plusMinutes(60),
@@ -49,7 +46,7 @@ class JdbcClientRunRepositoryTest {
     @Test
     void shouldFindAllRuns() {
         List<Run> runs = repository.findAll();
-        assertEquals(2, runs.size(), "Should have returned 2 runs");
+        assertEquals(2, runs.size());
     }
 
     @Test
@@ -61,37 +58,33 @@ class JdbcClientRunRepositoryTest {
 
     @Test
     void shouldNotFindRunWithInvalidId() {
-        RunNotFoundException notFoundException = assertThrows(
-                RunNotFoundException.class,
-                () -> repository.findById(100).get()
-        );
-
-        assertEquals("Run Not Found", notFoundException.getMessage());
+        var run = repository.findById(3);
+        assertTrue(run.isEmpty());
     }
 
     @Test
     void shouldCreateNewRun() {
-        repository.create(new Run(3,
+        repository.save(new Run(3,
                 "Friday Morning Run",
                 LocalDateTime.now(),
-                LocalDateTime.now().plusMinutes(40),
+                LocalDateTime.now().plusMinutes(30),
                 3,
                 Location.INDOOR,
-                null
-        ));
+                null));
         List<Run> runs = repository.findAll();
         assertEquals(3, runs.size());
     }
 
     @Test
     void shouldUpdateRun() {
-        repository.update(new Run(1,
+        repository.save(new Run(1,
                 "Monday Morning Run",
                 LocalDateTime.now(),
-                LocalDateTime.now().plus(30, ChronoUnit.MINUTES),
+                LocalDateTime.now().plusMinutes(30),
                 5,
-                Location.OUTDOOR, null), 1);
-        Run run = repository.findById(1).get();
+                Location.OUTDOOR,
+                null));
+        var run = repository.findById(1).get();
         assertEquals("Monday Morning Run", run.title());
         assertEquals(5, run.miles());
         assertEquals(Location.OUTDOOR, run.location());
@@ -99,7 +92,7 @@ class JdbcClientRunRepositoryTest {
 
     @Test
     void shouldDeleteRun() {
-        repository.delete(1);
+        repository.deleteById(1);
         List<Run> runs = repository.findAll();
         assertEquals(1, runs.size());
     }
