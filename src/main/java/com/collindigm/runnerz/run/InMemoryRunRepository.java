@@ -29,9 +29,10 @@ public class InMemoryRunRepository {
 
 
     Optional<Run> findById(Integer id) {
-        return runs.stream()
+        return Optional.ofNullable(runs.stream()
                 .filter(run -> run.id().equals(id))
-                .findFirst();
+                .findFirst()
+                .orElseThrow(RunNotFoundException::new));
     }
 
     void create(Run run) {
