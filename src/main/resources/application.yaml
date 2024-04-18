@@ -8,8 +8,8 @@ spring:
     generate-unique-name: false
     name: runnerz
     url: jdbc:postgresql://localhost:5432/runnerz
-    username: runnerz
-    password: theoddagen
+    username: theoddagen
+    password: password
   sql:
     init:
       mode: always
