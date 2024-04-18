@@ -46,6 +46,7 @@ public class Runnerz {
 		return factory.createClient(UserHttpClient.class);
 	}
 
+	/*
 	@Bean
 	CommandLineRunner user(UserHttpClient httpClient, UserRestClient restClient) {
 		return args -> {
@@ -56,4 +57,5 @@ public class Runnerz {
 			LOG.info("Fetch User via REST Client: {}", user);
 		};
 	}
+	*/
 }

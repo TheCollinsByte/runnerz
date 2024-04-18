@@ -54,4 +54,28 @@ class RunControllerTest {
                 .andExpect(jsonPath("$.size()", is(runs.size())));
     }
 
+    @Test
+    void shouldFindOneRun() {
+
+    }
+
+    @Test
+    void shouldReturnNotFoundWithInvalidId() {
+
+    }
+
+    @Test
+    void shouldCreateNewRun() {
+
+    }
+
+    @Test
+    void  shouldUpdateRun() {
+
+    }
+
+    @Test
+    void shouldDeleteRun() {
+
+    }
 }
