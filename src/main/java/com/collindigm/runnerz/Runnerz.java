@@ -53,7 +53,7 @@ public class Runnerz {
 			LOG.info("List of users via HTTP Client: {}", users);
 
 			User user = restClient.findById(1);
-			LOG.info("Fetch User via REST Client: {}", users);
+			LOG.info("Fetch User via REST Client: {}", user);
 		};
 	}
 }
