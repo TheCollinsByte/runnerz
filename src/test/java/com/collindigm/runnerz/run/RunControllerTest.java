@@ -20,8 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -90,8 +89,13 @@ class RunControllerTest {
     }
 
     @Test
-    void  shouldUpdateRun() {
-
+    void  shouldUpdateRun() throws Exception{
+        Run run = new Run(null, "Test Run", LocalDateTime.now(), LocalDateTime.now().plusMinutes(50), 1, Location.OUTDOOR, null);
+        mvc.perform(put("/api/runs/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(run))
+                )
+                .andExpect(status().isNoContent());
     }
 
     @Test
